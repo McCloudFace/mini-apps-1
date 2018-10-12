@@ -3,22 +3,26 @@ body {
 }
 
 button {
-  display: inline-block;
-  width: 60px;
-  height: 60px;
   background-color: #fff;
   border: 1px solid #000;
+  display: inline-block;
+  font-size: 20px;
+  height: 60px;
+  margin: 0;
+  padding: 20px;
+  width: 60px;
 }
 
 div {
   margin: 0;
-}
-
-.board {
-  width: 100%;
-  margin: 80px 80px;
+  padding: 0;
 }
 
 .row {
-  margin-top: -2px;
+  height: 60px;
+}
+
+.board {
+  width: 200px;
+  margin: 80px auto;
 }
