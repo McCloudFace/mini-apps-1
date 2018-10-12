@@ -19,7 +19,9 @@ var createRowElements = function () {
   row.className = 'row';
   for (let i = 0; i < 3; i++) {
     var btn = document.createElement('button');
+    // add click handler for moves
     btn.addEventListener('click', (e) => {
+      // onclick make a move
       moves(e);
     })
     row.append(btn);
@@ -49,10 +51,12 @@ var toggleMove = function (last) {
 
 // make moves in click handler
 var moves = (e) => {
-  e.target.value = toggleMove(lastMove);
-  lastMove = e.target.value;
-  let move = document.createTextNode(e.target.value);
-  e.target.appendChild(move);
+  if (!e.target.value) {
+    e.target.value = toggleMove(lastMove);
+    lastMove = e.target.value;
+    let move = document.createTextNode(e.target.value);
+    e.target.appendChild(move);
+  }
 }
 
 // initialize a board & append to div#app
@@ -66,3 +70,16 @@ window.onload = function () {
   init();
 };
 
+// function to reset board
+var nuke = function () {
+  let boardSquares = document.querySelectorAll('button');
+  boardSquares.forEach(square => {
+    square.removeAttribute('value');
+    square.innerText = '';
+  });
+  lastMove = '';
+};
+
+// reset the board
+let resetButton = document.querySelector('#footer > div');
+resetButton.addEventListener('click', nuke);
