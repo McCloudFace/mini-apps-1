@@ -1,0 +1,21 @@
+{
+  "name": "challenge_3_checkout_flow",
+  "version": "0.0.1",
+  "description": "Build a single-page app that takes a user through a series of forms that simulate a shopping cart checkout experience. ",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/McCloudFace/rpt09-mini-apps-1/tree/master/challenge_3"
+  },
+  "author": "Jeff Chasin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  }
+}
