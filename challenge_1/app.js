@@ -4,6 +4,8 @@
 var lastMove = '';
 // state of board
 var boardState = [];
+// state for numbew of moves (count for ties)
+var moveCount = 0;
 
 // in memory board
 var createBoardArray = function () {
@@ -39,7 +41,14 @@ var checkWinners = function () {
     // diagonal wins
     isEqual(boardState[0][0], boardState[1][1], boardState[2][2]) ||
     isEqual(boardState[0][2], boardState[1][1], boardState[2][0])) {
+    moveCount = 0;
     console.log('WINNER');
+  }
+};
+
+var checkTies = function (count) {
+  if (count === 9) {
+    console.log('TIE SCORE');
   }
 };
 
@@ -55,6 +64,7 @@ var toggleMove = function (last) {
 // make moves in click handler
 var moves = (e) => {
   if (!e.target.value) {
+    moveCount++;
     e.target.value = toggleMove(lastMove);
     var theRow = parseInt(e.target.dataset.position[0]);
     var theCol = parseInt(e.target.dataset.position[2]);
@@ -64,6 +74,7 @@ var moves = (e) => {
     boardState[theRow][theCol] = lastMove;
     console.log('boardState: ', boardState);
     checkWinners();
+    checkTies(moveCount);
   }
 };
 
@@ -116,6 +127,7 @@ var nuke = function () {
   });
   lastMove = '';
   boardState = createBoardArray();
+  moveCount = 0;
 };
 
 // reset the board
