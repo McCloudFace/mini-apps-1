@@ -7,9 +7,9 @@ var boardState = [];
 
 // in memory board
 var createBoardArray = function () {
-  let board = [];
-  for (let i = 0; i < 3; i++) {
-    let row = new Array(3);
+  var board = [];
+  for (var i = 0; i < 3; i++) {
+    var row = new Array(3);
     board.push(row);
   }
   return board;
@@ -18,8 +18,8 @@ var createBoardArray = function () {
 // to check if moves (squares) are the same player
 var isEqual = function () {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments#Description
-  let args = Array.prototype.slice.call(arguments);
-  for (let i = 1; i < args.length; i++) {
+  var args = Array.prototype.slice.call(arguments);
+  for (var i = 1; i < args.length; i++) {
     if (args[i] === null || args[i] === undefined || args[i] !== args[i - 1]) {
       return false;
     } else {
@@ -60,9 +60,13 @@ var toggleMove = function (last) {
 var moves = (e) => {
   if (!e.target.value) {
     e.target.value = toggleMove(lastMove);
+    var theRow = parseInt(e.target.dataset.position[0]);
+    var theCol = parseInt(e.target.dataset.position[2]);
     lastMove = e.target.value;
-    let move = document.createTextNode(e.target.value);
+    var move = document.createTextNode(lastMove);
     e.target.appendChild(move);
+    boardState[theRow][theCol] = lastMove;
+    console.log('boardState: ', boardState);
     checkWinners();
   }
 };
@@ -71,7 +75,7 @@ var moves = (e) => {
 var createRowElements = function (rowIndex) {
   var row = document.createElement('div');
   row.className = 'row';
-  for (let i = 0; i < 3; i++) {
+  for (var i = 0; i < 3; i++) {
     var btn = document.createElement('button');
     btn.dataset.position = rowIndex.toString() + ',' + i.toString();
     // add click handler for moves
@@ -86,10 +90,10 @@ var createRowElements = function (rowIndex) {
 
 // dom element for a board of rows
 var renderBoard = function () {
-  let theBoard = document.createElement('div');
+  var theBoard = document.createElement('div');
   theBoard.className = 'board';
-  for (let i = 0; i < 3; i++) {
-    let aRow = createRowElements(i);
+  for (var i = 0; i < 3; i++) {
+    var aRow = createRowElements(i);
     theBoard.appendChild(aRow);
   }
   return theBoard;
@@ -97,7 +101,8 @@ var renderBoard = function () {
 
 // initialize a board & append to div#app
 var init = function () {
-  let aBoard = renderBoard();
+  var aBoard = renderBoard();
+  boardState = createBoardArray();
   document.querySelector('#app').appendChild(aBoard);
 };
 
@@ -108,7 +113,7 @@ window.onload = function () {
 
 // function to reset board
 var nuke = function () {
-  let boardSquares = document.querySelectorAll('button');
+  var boardSquares = document.querySelectorAll('button');
   boardSquares.forEach(square => {
     square.removeAttribute('value');
     square.innerText = '';
