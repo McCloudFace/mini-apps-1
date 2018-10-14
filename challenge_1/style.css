@@ -26,6 +26,10 @@ button:hover {
   cursor: pointer;
 }
 
+button:active, button:focus {
+  outline: none;
+}
+
 #app div {
   margin: 0;
   padding: 0;
