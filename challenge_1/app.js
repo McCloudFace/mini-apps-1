@@ -9,40 +9,36 @@ var boardState = [];
 var createBoardArray = function () {
   var board = [];
   for (var i = 0; i < 3; i++) {
-    var row = new Array(3);
+    var row = new Array('', '', '');
     board.push(row);
   }
   return board;
 };
 
 // to check if moves (squares) are the same player
-var isEqual = function () {
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments#Description
-  var args = Array.prototype.slice.call(arguments);
-  for (var i = 1; i < args.length; i++) {
-    if (args[i] === null || args[i] === undefined || args[i] !== args[i - 1]) {
-      return false;
-    } else {
-      return true;
-    }
+var isEqual = function (sq1, sq2, sq3) {
+  if (sq1 === '' || sq1 !== sq2 || sq2 !== sq3) {
+    return false;
+  } else {
+    return true;
   }
 };
 
 // check for winning combinations
 var checkWinners = function () {
   // row wins
-  if ( isEqual(boardState[0][0], boardState[0][1], boardState[0][2]) ||
-       isEqual(boardState[1][0], boardState[1][1], boardState[1][2]) ||
-       isEqual(boardState[2][0], boardState[2][1], boardState[2][2]) ||
+  if (isEqual(boardState[0][0], boardState[0][1], boardState[0][2]) ||
+    isEqual(boardState[1][0], boardState[1][1], boardState[1][2]) ||
+    isEqual(boardState[2][0], boardState[2][1], boardState[2][2]) ||
 
-  // column wins
-       isEqual(boardState[0][0], boardState[1][0], boardState[2][0]) ||
-       isEqual(boardState[0][1], boardState[1][1], boardState[2][1]) ||
-       isEqual(boardState[0][2], boardState[1][2], boardState[2][2]) ||
+    // column wins
+    isEqual(boardState[0][0], boardState[1][0], boardState[2][0]) ||
+    isEqual(boardState[0][1], boardState[1][1], boardState[2][1]) ||
+    isEqual(boardState[0][2], boardState[1][2], boardState[2][2]) ||
 
-  // diagonal wins
-       isEqual(boardState[0][0], boardState[1][1], boardState[2][2]) ||
-       isEqual(boardState[0][2], boardState[1][1], boardState[2][0]) ) {
+    // diagonal wins
+    isEqual(boardState[0][0], boardState[1][1], boardState[2][2]) ||
+    isEqual(boardState[0][2], boardState[1][1], boardState[2][0])) {
     console.log('WINNER');
   }
 };
@@ -119,7 +115,7 @@ var nuke = function () {
     square.innerText = '';
   });
   lastMove = '';
-  boardState = [];
+  boardState = createBoardArray();
 };
 
 // reset the board

@@ -1,5 +1,6 @@
 body {
   padding: 20px;
+  margin: 0;
 }
 
 p {
@@ -15,8 +16,8 @@ button {
   background-color: #fff;
   border: 1px solid #000;
   display: inline-block;
-  font-size: 20px;
-  height: 60px;
+  font-size: 19px;
+  height: 100%;
   margin: 0;
   padding: 20px;
   width: 60px;
