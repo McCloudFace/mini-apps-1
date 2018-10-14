@@ -43,12 +43,14 @@ var checkWinners = function () {
     isEqual(boardState[0][2], boardState[1][1], boardState[2][0])) {
     moveCount = 0;
     console.log('WINNER');
+    winnerWinner.showModal();
   }
 };
 
 var checkTies = function (count) {
   if (count === 9) {
     console.log('TIE SCORE');
+    tieScore.showModal();
   }
 };
 

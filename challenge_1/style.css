@@ -63,3 +63,7 @@ button:active, button:focus {
   cursor: pointer;
   box-shadow: none;
 }
+
+#winnerWinner, #tieScore {
+  text-align: center;
+}
