@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "start-dev": "nodemon server.js"
+    "start-dev": "nodemon server.js",
+    "build": "babel client --out-dir public --source-maps inline"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,10 @@
     "react-dom": "^16.5.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "nodemon": "^1.18.4"
   }
 }
