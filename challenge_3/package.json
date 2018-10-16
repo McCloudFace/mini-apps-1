@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "nodemon server.js",
-    "build": "babel client --out-dir public --source-maps inline"
+    "build": "babel client --out-dir public --presets=@babel/preset-react,@babel/env --source-maps inline"
   },
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
   "author": "Jeff Chasin",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "express": "^4.16.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
