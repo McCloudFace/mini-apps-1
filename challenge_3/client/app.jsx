@@ -1,11 +1,15 @@
 
 var Form = function (props) {
   return (
-    <div>
-      <button onClick={props.handleCheckout}>
-        Checkout
-      </button>
-    </div>
+    <button onClick={props.checkout}>
+      Checkout
+    </button>
+  );
+};
+
+var F1 = function (props) {
+  return (
+    <div>This is F1</div>
   );
 };
 
@@ -13,20 +17,28 @@ class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.handleCheckout = this.handleCheckout.bind(this);
-    this.state = { form: 'index' };
+    this.state = {
+      isIndex: true,
+      isF1: false,
+      isF2: false,
+      isF3: false
+    };
   }
 
   handleCheckout() {
-    this.setState({ form: 'f1' });
-    console.log('this.state.form: ', this.state.form);
+    this.setState({ isIndex: false, isF1: true });
+    console.log('this.state.isF1: ', this.state.isF1);
   }
 
   render() {
-    const formPage = this.state.form;
 
-    if (formPage === 'index') {
+    if (this.state.isIndex === true) {
       return (
-        <Form onClick={this.handleCheckout} />
+        <Form checkout={this.handleCheckout.bind(this)} />
+      );
+    } else if (this.state.isF1 === true) {
+      return (
+        <F1 />
       );
     }
   }
