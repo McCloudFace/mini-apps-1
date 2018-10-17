@@ -96,6 +96,21 @@ var F3 = function (props) {
   );
 };
 
+var Confirmation = function (props) {
+  return (
+    <div className='row'>
+      <div className='col-md-8 order-md-1'>
+        <div className='mb-3'>
+          <p>Name: {props.name}</p>
+          <p>Address: {props.address}</p>
+          <hr className='mb-3' />
+          <button className='btn btn-primary btn-lg'>Purchase</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 class Checkout extends React.Component {
   constructor(props) {
     super(props);
@@ -105,6 +120,7 @@ class Checkout extends React.Component {
       isF1: false,
       isF2: false,
       isF3: false,
+      isConfirmation: false,
       name: '',
       email: '',
       password: '',
@@ -126,6 +142,10 @@ class Checkout extends React.Component {
     console.log('this.state.isF1: ', this.state.isF1);
   }
 
+  handleNext() {
+    // TODO:
+  }
+
   render() {
 
     if (this.state.isIndex === true) {
@@ -143,6 +163,10 @@ class Checkout extends React.Component {
     } else if (this.state.isF3 === true) {
       return (
         <F3 />
+      );
+    } else if (this.state.isConfirmation === true) {
+      return (
+        <Confirmation />
       );
     }
   }
