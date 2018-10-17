@@ -14,15 +14,15 @@ var F1 = function (props) {
     <form>
       <div className='mb-3'>
         <label htmlFor='name'>Name</label>
-        <input type='text' className='form-control' id='name' placeholder='' value='' />
+        <input type='text' className='form-control' id='name' value='' />
       </div>
       <div className='mb-3'>
         <label htmlFor='email'>Email</label>
-        <input type='email' className='form-control' id='email' placeholder='you@example.com' value='' />
+        <input type='email' className='form-control' id='email' value='' />
       </div>
       <div className='mb-3'>
         <label htmlFor='password'>Password</label>
-        <input type='password' className='form-control' id='password' placeholder='' />
+        <input type='password' className='form-control' id='password' />
       </div>
       <hr className='mb-3' />
       <button className='btn btn-primary btn-lg'>Next</button>
@@ -52,7 +52,7 @@ var F2 = function (props) {
         </div>
         <div className='col-md-3 mb-3'>
           <label for='zip'>Zip</label>
-          <input type='text' className='form-control' id='zip' placeholder='' />
+          <input type='text' className='form-control' id='zip' />
         </div>
       </div>
       <div className='mb-3'>
@@ -70,24 +70,24 @@ var F3 = function (props) {
     <form>
       <div class='row'>
         <div className='col-md-6 mb-3'>
-          <label htmlFor='cc-number'>Credit card number</label>
-          <input type='text' className='form-control' id='cc-number' placeholder='' />
+          <label htmlFor='ccNumber'>Credit card number</label>
+          <input type='text' className='form-control' id='ccNumber' />
         </div>
       </div>
       <div className='row'>
         <div className='col-md-3 mb-3'>
-          <label htmlFor='cc-expiration'>Expiration</label>
-          <input type='text' className='form-control' id='cc-expiration' placeholder='' />
+          <label htmlFor='ccExpiration'>Expiration</label>
+          <input type='text' className='form-control' id='ccExpiration' />
         </div>
         <div className='col-md-3 mb-3'>
-          <label htmlFor='cc-cvv'>CVV</label>
-          <input type='text' className='form-control' id='cc-cvv' placeholder='' />
+          <label htmlFor='ccCvv'>CVV</label>
+          <input type='text' className='form-control' id='ccCvv' />
         </div>
       </div>
       <div className='row'>
         <div className='col-md-6 mb-3'>
-          <label htmlFor='cc-zip'>Billing Zip Code</label>
-          <input type='text' className='form-control' id='cc-zip' placeholder='' />
+          <label htmlFor='ccZip'>Billing Zip Code</label>
+          <input type='text' className='form-control' id='ccZip' />
         </div>
       </div>
       <hr className='mb-3' />
@@ -104,7 +104,20 @@ class Checkout extends React.Component {
       isIndex: true,
       isF1: false,
       isF2: false,
-      isF3: false
+      isF3: false,
+      name: '',
+      email: '',
+      password: '',
+      address: '',
+      address2: '',
+      city: '',
+      state: '',
+      zip: '',
+      phone: '',
+      ccNumber: '',
+      ccExpiration: '',
+      ccCvv: '',
+      ccZip: ''
     };
   }
 
