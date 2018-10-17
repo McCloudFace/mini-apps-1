@@ -116,7 +116,11 @@ var Confirmation = function (props) {
           <p>Name: {props.name}</p>
           <p>Address: {props.address}</p>
           <hr className='mb-3' />
-          <button className='btn btn-primary btn-lg'>Purchase</button>
+          <button
+            className='btn btn-primary btn-lg'
+            onClick={props.handleConfirmation}>
+            Purchase
+          </button>
         </div>
       </div>
     </div>
@@ -171,25 +175,25 @@ class Checkout extends React.Component {
 
     // setState for next form
     var formBtn = e.target.id;
-    console.log('formBtn: ', formBtn);
     if (formBtn === 'F1') {
-      this.setState( (prevState) => ({
+      this.setState((prevState) => ({
         isF1: !prevState.isF1, isF2: !prevState.isF2
       }));
     } else if (formBtn === 'F2') {
-      this.setState( (prevState) => ({
+      this.setState((prevState) => ({
         isF2: !prevState.isF2, isF3: !prevState.isF3
       }));
     } else if (formBtn === 'F3') {
-      this.setState( (prevState) => ({
+      this.setState((prevState) => ({
         isF3: !prevState.isF3, isConfirmation: !prevState.isConfirmation
       }));
     }
   }
 
   handleConfirmation(e) {
-    // TODO: send to home page
-    this.setState({ whichForm: 'index' });
+    this.setState((prevState) => ({
+      isConfirmation: !prevState.isConfirmation, isIndex: !prevState.isIndex
+    }));
   }
 
   render() {
