@@ -3,7 +3,8 @@ var Form = function (props) {
   return (
     <button
       className='btn btn-primary btn-lg btn-block'
-      onClick={props.checkout}>
+      onClick={props.checkout}
+      type="button">
       Checkout Now
     </button>
   );
@@ -28,7 +29,9 @@ var F1 = function (props) {
       <button
         className='btn btn-primary btn-lg'
         id='F1'
-        onClick={props.handleNext}>Next
+        onClick={props.handleNext}
+        type="button">
+        Next
       </button>
     </form>
   );
@@ -67,7 +70,9 @@ var F2 = function (props) {
       <button
         className='btn btn-primary btn-lg'
         id='F2'
-        onClick={props.handleNext}>Next
+        onClick={props.handleNext}
+        type="button">
+        Next
       </button>
     </form>
   );
@@ -102,7 +107,9 @@ var F3 = function (props) {
       <button
         className='btn btn-primary btn-lg'
         id='F3'
-        onClick={props.handleNext}>Next
+        onClick={props.handleNext}
+        type="button">
+        Next
       </button>
     </form>
   );
@@ -118,7 +125,8 @@ var Confirmation = function (props) {
           <hr className='mb-3' />
           <button
             className='btn btn-primary btn-lg'
-            onClick={props.handleConfirmation}>
+            onClick={props.handleConfirmation}
+            type="button">
             Purchase
           </button>
         </div>
