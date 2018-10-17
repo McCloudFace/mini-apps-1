@@ -14,15 +14,15 @@ var F1 = function (props) {
     <form>
       <div className='mb-3'>
         <label htmlFor='name'>Name</label>
-        <input type='text' className='form-control' id='name' value='' />
+        <input type='text' className='form-control' id='name' value={props.name} onChange={props.handleChange} />
       </div>
       <div className='mb-3'>
         <label htmlFor='email'>Email</label>
-        <input type='email' className='form-control' id='email' value='' />
+        <input type='email' className='form-control' id='email' value={props.email} onChange={props.handleChange} />
       </div>
       <div className='mb-3'>
         <label htmlFor='password'>Password</label>
-        <input type='password' className='form-control' id='password' />
+        <input type='password' className='form-control' id='password' value={props.password} onChange={props.handleChange} />
       </div>
       <hr className='mb-3' />
       <button
@@ -39,29 +39,29 @@ var F2 = function (props) {
     <form>
       <div className='mb-3'>
         <label htmlFor='address'>Address</label>
-        <input type='text' className='form-control' id='address' />
+        <input type='text' className='form-control' id='address' value={props.address} onChange={props.handleChange} />
       </div>
       <div className='mb-3'>
         <label htmlFor='address2'>Address 2</label>
-        <input type='text' className='form-control' id='address2' />
+        <input type='text' className='form-control' id='address2' value={props.address2} onChange={props.handleChange} />
       </div>
       <div className='row'>
         <div className='col-md-5 mb-3'>
           <label htmlFor='city'>City</label>
-          <input type='text' className='form-control' id='city' />
+          <input type='text' className='form-control' id='city' value={props.city} onChange={props.handleChange} />
         </div>
         <div className='col-md-4 mb-3'>
           <label for='state'>State</label>
-          <input type='text' className='form-control' id='state' />
+          <input type='text' className='form-control' id='state' value={props.state} onChange={props.handleChange} />
         </div>
         <div className='col-md-3 mb-3'>
           <label for='zip'>Zip</label>
-          <input type='text' className='form-control' id='zip' />
+          <input type='text' className='form-control' id='zip' value={props.zip} onChange={props.handleChange} />
         </div>
       </div>
       <div className='mb-3'>
         <label htmlFor='phone'>Phone Number</label>
-        <input type='tel' className='form-control' id='phone' />
+        <input type='tel' className='form-control' id='phone' value={props.phone} onChange={props.handleChange} />
       </div>
       <hr className='mb-3' />
       <button
@@ -79,23 +79,23 @@ var F3 = function (props) {
       <div class='row'>
         <div className='col-md-6 mb-3'>
           <label htmlFor='ccNumber'>Credit card number</label>
-          <input type='text' className='form-control' id='ccNumber' />
+          <input type='text' className='form-control' id='ccNumber' value={props.ccNumber} onChange={props.handleChange} />
         </div>
       </div>
       <div className='row'>
         <div className='col-md-3 mb-3'>
           <label htmlFor='ccExpiration'>Expiration</label>
-          <input type='text' className='form-control' id='ccExpiration' />
+          <input type='text' className='form-control' id='ccExpiration' value={props.ccExpiration} onChange={props.handleChange} />
         </div>
         <div className='col-md-3 mb-3'>
           <label htmlFor='ccCvv'>CVV</label>
-          <input type='text' className='form-control' id='ccCvv' />
+          <input type='text' className='form-control' id='ccCvv' value={props.ccCvv} onChange={props.handleChange} />
         </div>
       </div>
       <div className='row'>
         <div className='col-md-6 mb-3'>
           <label htmlFor='ccZip'>Billing Zip Code</label>
-          <input type='text' className='form-control' id='ccZip' />
+          <input type='text' className='form-control' id='ccZip' value={props.ccZip} onChange={props.handleChange} />
         </div>
       </div>
       <hr className='mb-3' />
@@ -126,7 +126,10 @@ var Confirmation = function (props) {
 class Checkout extends React.Component {
   constructor(props) {
     super(props);
+
     this.handleCheckout = this.handleCheckout.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+
     this.state = {
       isIndex: true,
       isF1: false,
@@ -154,6 +157,12 @@ class Checkout extends React.Component {
     console.log('this.state.isF1: ', this.state.isF1);
   }
 
+  handleChange(e) {
+    var key = e.target.id;
+    var val = e.target.value;
+    this.setState({ [key]: val});
+  }
+
   handleNext(e) {
     // TODO:
   }
@@ -166,7 +175,7 @@ class Checkout extends React.Component {
       );
     } else if (this.state.isF1 === true) {
       return (
-        <F1 />
+        <F1 handleChange={this.handleChange.bind(this)} />
       );
     } else if (this.state.isF2 === true) {
       return (
