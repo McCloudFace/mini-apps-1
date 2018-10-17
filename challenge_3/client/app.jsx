@@ -25,7 +25,11 @@ var F1 = function (props) {
         <input type='password' className='form-control' id='password' />
       </div>
       <hr className='mb-3' />
-      <button className='btn btn-primary btn-lg'>Next</button>
+      <button
+        className='btn btn-primary btn-lg'
+        id='f1Next'
+        onClick={props.handleNext}>Next
+      </button>
     </form>
   );
 };
@@ -60,7 +64,11 @@ var F2 = function (props) {
         <input type='tel' className='form-control' id='phone' />
       </div>
       <hr className='mb-3' />
-      <button className='btn btn-primary btn-lg'>Next</button>
+      <button
+        className='btn btn-primary btn-lg'
+        id='f2Next'
+        onClick={props.handleNext}>Next
+      </button>
     </form>
   );
 };
@@ -91,7 +99,11 @@ var F3 = function (props) {
         </div>
       </div>
       <hr className='mb-3' />
-      <button className='btn btn-primary btn-lg'>Next</button>
+      <button
+        className='btn btn-primary btn-lg'
+        id='f3Next'
+        onClick={props.handleNext}>Next
+      </button>
     </form>
   );
 };
@@ -142,7 +154,7 @@ class Checkout extends React.Component {
     console.log('this.state.isF1: ', this.state.isF1);
   }
 
-  handleNext() {
+  handleNext(e) {
     // TODO:
   }
 
