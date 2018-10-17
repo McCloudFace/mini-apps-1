@@ -27,7 +27,7 @@ var F1 = function (props) {
       <hr className='mb-3' />
       <button
         className='btn btn-primary btn-lg'
-        id='f1Next'
+        id='F1'
         onClick={props.handleNext}>Next
       </button>
     </form>
@@ -51,11 +51,11 @@ var F2 = function (props) {
           <input type='text' className='form-control' id='city' value={props.city} onChange={props.handleChange} />
         </div>
         <div className='col-md-4 mb-3'>
-          <label for='state'>State</label>
+          <label htmlFor='state'>State</label>
           <input type='text' className='form-control' id='state' value={props.state} onChange={props.handleChange} />
         </div>
         <div className='col-md-3 mb-3'>
-          <label for='zip'>Zip</label>
+          <label htmlFor='zip'>Zip</label>
           <input type='text' className='form-control' id='zip' value={props.zip} onChange={props.handleChange} />
         </div>
       </div>
@@ -66,7 +66,7 @@ var F2 = function (props) {
       <hr className='mb-3' />
       <button
         className='btn btn-primary btn-lg'
-        id='f2Next'
+        id='F2'
         onClick={props.handleNext}>Next
       </button>
     </form>
@@ -76,7 +76,7 @@ var F2 = function (props) {
 var F3 = function (props) {
   return (
     <form>
-      <div class='row'>
+      <div className='row'>
         <div className='col-md-6 mb-3'>
           <label htmlFor='ccNumber'>Credit card number</label>
           <input type='text' className='form-control' id='ccNumber' value={props.ccNumber} onChange={props.handleChange} />
@@ -101,7 +101,7 @@ var F3 = function (props) {
       <hr className='mb-3' />
       <button
         className='btn btn-primary btn-lg'
-        id='f3Next'
+        id='F3'
         onClick={props.handleNext}>Next
       </button>
     </form>
@@ -129,8 +129,10 @@ class Checkout extends React.Component {
 
     this.handleCheckout = this.handleCheckout.bind(this);
     this.handleNext = this.handleNext.bind(this);
+    this.handleConfirmation = this.handleConfirmation.bind(this);
 
     this.state = {
+      // whichForm: 'index',
       isIndex: true,
       isF1: false,
       isF2: false,
@@ -152,19 +154,42 @@ class Checkout extends React.Component {
     };
   }
 
-  handleCheckout() {
+  handleCheckout(e) {
     this.setState({ isIndex: false, isF1: true });
-    console.log('this.state.isF1: ', this.state.isF1);
   }
 
   handleChange(e) {
     var key = e.target.id;
     var val = e.target.value;
-    this.setState({ [key]: val});
+    this.setState({ [key]: val });
   }
 
   handleNext(e) {
     // TODO:
+    // do DB stuff
+    //   post form data to server end point(s)
+
+    // setState for next form
+    var formBtn = e.target.id;
+    console.log('formBtn: ', formBtn);
+    if (formBtn === 'F1') {
+      this.setState( (prevState) => ({
+        isF1: !prevState.isF1, isF2: !prevState.isF2
+      }));
+    } else if (formBtn === 'F2') {
+      this.setState( (prevState) => ({
+        isF2: !prevState.isF2, isF3: !prevState.isF3
+      }));
+    } else if (formBtn === 'F3') {
+      this.setState( (prevState) => ({
+        isF3: !prevState.isF3, isConfirmation: !prevState.isConfirmation
+      }));
+    }
+  }
+
+  handleConfirmation(e) {
+    // TODO: send to home page
+    this.setState({ whichForm: 'index' });
   }
 
   render() {
@@ -175,19 +200,28 @@ class Checkout extends React.Component {
       );
     } else if (this.state.isF1 === true) {
       return (
-        <F1 handleChange={this.handleChange.bind(this)} />
+        <F1
+          handleChange={this.handleChange.bind(this)}
+          handleNext={this.handleNext.bind(this)}
+        />
       );
     } else if (this.state.isF2 === true) {
       return (
-        <F2 />
+        <F2
+          handleChange={this.handleChange.bind(this)}
+          handleNext={this.handleNext.bind(this)}
+        />
       );
     } else if (this.state.isF3 === true) {
       return (
-        <F3 />
+        <F3
+          handleChange={this.handleChange.bind(this)}
+          handleNext={this.handleNext.bind(this)}
+        />
       );
     } else if (this.state.isConfirmation === true) {
       return (
-        <Confirmation />
+        <Confirmation handleConfirmation={this.handleConfirmation.bind(this)} />
       );
     }
   }
