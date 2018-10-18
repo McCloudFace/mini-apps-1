@@ -23,7 +23,14 @@ sequelize
     console.error('mySQL DB connection error:', err);
   });
 
+var activeRecord = 0;
+
 const Shopper = sequelize.define('shopper', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   name: {
     type: Sequelize.STRING
   },
@@ -63,22 +70,41 @@ const Shopper = sequelize.define('shopper', {
   ccZip: {
     type: Sequelize.STRING
   }
+},
+{
+  timestamps: false
 });
 
 app.use(express.static(__dirname + '/public'));
 
 app.post('/f1', formParser, (req, res) => {
   console.log('/f1 req.body: ', req.body);
+
+  Shopper.create(req.body).then(shopper => {
+    activeRecord = shopper.id;
+    console.log('f1 saved to DB');
+  });
+
   res.send('/f1 received');
 });
 
 app.post('/f2', formParser, (req, res) => {
   console.log('/f2 req: ', req.body);
+
+  Shopper.findById(activeRecord).then(shopper => {
+    shopper.update(req.body);
+  });
+
   res.send('/f2 received');
 });
 
 app.post('/f3', formParser, (req, res) => {
   console.log('/f3 req: ', req.body);
+
+  Shopper.findById(activeRecord).then(shopper => {
+    shopper.update(req.body);
+  });
+
   res.send('/f3 received');
 });
 
