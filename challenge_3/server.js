@@ -1,25 +1,24 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!');
-// });
+var formParser = bodyParser.urlencoded({ extended: true });
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/f1', (req, res) => {
-  console.log('/f1 req: ', req);
+app.post('/f1', formParser, (req, res) => {
+  console.log('/f1 req.body: ', req.body);
   res.send('/f1 received');
 });
 
-app.get('/f2', (req, res) => {
-  console.log('/f2 req: ', req);
+app.post('/f2', formParser, (req, res) => {
+  console.log('/f2 req: ', req.body);
   res.send('/f2 received');
 });
 
-app.get('/f3', (req, res) => {
-  console.log('/f3 req: ', req);
+app.post('/f3', formParser, (req, res) => {
+  console.log('/f3 req: ', req.body);
   res.send('/f3 received');
 });
 

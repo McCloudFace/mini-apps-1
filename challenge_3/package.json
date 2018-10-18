@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "nodemon server.js",
-    "build": "babel client --out-dir public --presets=@babel/preset-react,@babel/env --source-maps inline"
+    "build": "babel client --out-dir public --presets=@babel/preset-react,@babel/env --watch --source-maps inline"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "body-parser": "^1.18.3",
     "nodemon": "^1.18.4"
   }
 }
