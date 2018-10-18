@@ -23,6 +23,48 @@ sequelize
     console.error('mySQL DB connection error:', err);
   });
 
+const Shopper = sequelize.define('shopper', {
+  name: {
+    type: Sequelize.STRING
+  },
+  email: {
+    type: Sequelize.STRING
+  },
+  password: {
+    type: Sequelize.STRING
+  },
+  address: {
+    type: Sequelize.STRING
+  },
+  address2: {
+    type: Sequelize.STRING
+  },
+  city: {
+    type: Sequelize.STRING
+  },
+  state: {
+    type: Sequelize.STRING
+  },
+  zip: {
+    type: Sequelize.STRING
+  },
+  phone: {
+    type: Sequelize.STRING
+  },
+  ccNumber: {
+    type: Sequelize.STRING
+  },
+  ccExpiration: {
+    type: Sequelize.STRING
+  },
+  ccCvv: {
+    type: Sequelize.STRING
+  },
+  ccZip: {
+    type: Sequelize.STRING
+  }
+});
+
 app.use(express.static(__dirname + '/public'));
 
 app.post('/f1', formParser, (req, res) => {
