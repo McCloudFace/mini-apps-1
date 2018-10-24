@@ -17,13 +17,15 @@
 
   <div class="container">
     <div id="app">
-      <form>
+
+      <form id="jsonForm" action="" method="post">
         <div class="form-group">
-          <label for="jsonTextArea">JSON Drop Zone</label>
-          <textarea class="form-control" id="jsonTextArea" rows="3" placeholder="Paste JSON here..."></textarea>
+          <label for="jsonInput">JSON Drop Zone</label>
+          <textarea class="form-control" id="jsonInput" name="jsonInput" rows="3"></textarea>
         </div>
         <button type="submit" class="btn btn-primary mb-2">Submit</button>
       </form>
+
     </div>
   </div>
 
