@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const app = express();
 const port = 3000;
@@ -47,6 +48,11 @@ var flatten = function (data) {
   return result;
 };
 
+var readIndex = function() {
+  var file = fs.readFileSync('./client/index.html', 'utf8');
+  return file;
+};
+
 app.post('/', urlencodedParser, function (req, res) {
   var formData = req.body.jsonInput;
   formData = JSON.parse(formData);
@@ -63,9 +69,12 @@ app.post('/', urlencodedParser, function (req, res) {
     csvStr += newline;
   });
 
-  console.log('csvStr: ', csvStr);
+  var page = readIndex();
+  var toReplace = '<div id="csv"></div>';
+  var withCsv = '<div id="csv"><pre>' + csvStr + '</pre></div>';
+  page = page.replace(toReplace, withCsv);
 
-  res.send(csvStr);
+  res.send(page);
 });
 
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
